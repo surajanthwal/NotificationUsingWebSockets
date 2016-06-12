@@ -1,0 +1,35 @@
+<div id="Subscribers" style="margin-top : 50px" class="mainbox col-md-3 ">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title">Subscribe for</div>
+        </div>
+        <div class="panel-body">
+
+            <div class="form-group">
+                <!--<ul>-->
+                <!--<li ng-repeat="Person in unSubscribed">-->
+                <!--<label for="person" class="col-md-8 control-label"> {{Person}} </label>-->
+
+                <!--<div class="col-md-4">-->
+                <!--<button type="button" class="btn btn-primary" value="Subscribe"/>-->
+                <!--</div>-->
+
+                <!--</li>-->
+                <!--</ul>-->
+
+                <!--<ul>-->
+                    <!--<li data-ng-repeat="Person in unSubscribed">-->
+                        <!--<button class="btn btn-primary" ng-click="doSomething($index)">{{Person}}</button>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <div class="data" data-ng-repeat="Person in unSubscribed" >
+                    <button type="button" class="btn btn-primary" ng-click="doSomething(Person)">{{Person}}</button>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

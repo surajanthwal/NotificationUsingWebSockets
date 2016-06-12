@@ -1,0 +1,23 @@
+
+
+    <div id="Subscribers" style="margin-top : 50px" class="mainbox col-md-3 ">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Subscribed Persons</div>
+            </div>
+            <div class="panel-body">
+                <!--<div>-->
+                    <!--<li ng-repeat="Person in subscribed">-->
+                        <!--{{Person}}-->
+                    <!--</li>-->
+                <!--</div>-->
+                <div class="form-group">
+                    <div class="data" data-ng-repeat="Person in subscribed" >
+                        <button type="button" class="btn btn-primary" ng-click="doSomething(Person)">{{Person}}</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
