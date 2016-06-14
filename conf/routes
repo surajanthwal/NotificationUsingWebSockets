@@ -12,6 +12,7 @@ GET         /getUnsubscribedPersons        controllers.Application.getUnsubscrib
 POST        /edit                          controllers.Application.editProfile()
 GET         /unsubscribePerson             controllers.Application.unsubscribePerson(emailId)
 GET         /subscribePerson               controllers.Application.subscribePerson(emailId)
+GET         /logout                        controllers.Application.logout()
 #web socket
 GET         /websocket                     controllers.Application.socket()
 # Map static resources from the /public folder to the /assets URL path

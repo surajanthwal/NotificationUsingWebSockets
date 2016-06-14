@@ -31,8 +31,11 @@ public class Application extends Controller {
         User user = User.findByIdAndPassword(emailId, password);
 
         if (user != null) {
+            System.out.println("Before" + session().get("emailId"));
             session().clear();
             session().put("emailId", user.getEmailId());
+            System.out.println("After" + session().get("emailId"));
+
             result.put("successMessage", "Successfull login..congrats!!!!!!");
             return ok(result);
         }
@@ -172,8 +175,12 @@ public class Application extends Controller {
             user.setAge(age);
         }
 
-        if (em || pa || fi || la || ad || a)
+        if (em || pa || fi || la || ad || a) {
             user.update();
+        } else {
+            result.put("errorMessage", "Please give valid entries");
+            return badRequest(result);
+        }
 
         String targetMessage;
         if (!"".equals(message))
@@ -229,6 +236,7 @@ public class Application extends Controller {
     @Security.Authenticated(value = WebSecurityAuthenticator.class)
     public static Result unsubscribePerson(String emailId) {
         String email = ctx().session().get("emailId");
+        System.out.println("Session emailId is :" + email);
         ObjectNode result = Json.newObject();
         User user = User.findByEmail(email);
         User user1 = User.findByEmail(emailId);
@@ -247,6 +255,7 @@ public class Application extends Controller {
     @Security.Authenticated(value = WebSecurityAuthenticator.class)
     public static Result subscribePerson(String emailId) {
         String email = ctx().session().get("emailId");
+        System.out.println("Session emailId is :" + email);
         ObjectNode result = Json.newObject();
         User user = User.findByEmail(email);
         User user1 = User.findByEmail(emailId);
@@ -272,5 +281,12 @@ public class Application extends Controller {
         };
     }
 
+    public static Result logout() {
+        session().clear();
+        return redirect(controllers.routes.Application.index());
+    }
+
 
 }
+
+

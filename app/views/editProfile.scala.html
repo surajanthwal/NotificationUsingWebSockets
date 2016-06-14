@@ -16,15 +16,25 @@
         <div ui-view="editProfileList"></div>
         <div ui-view="UnsubscribedUsersList"></div>
 
-        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+        @*<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>*@
+        @*<link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.1.0/toaster.min.css" rel="stylesheet" />*@
+
+        <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-right'}"></toaster-container>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.1.0/toaster.min.css" rel="stylesheet" />
+
+
         <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-2.2.4.js")"></script>
         <script type="text/javascript" src="@routes.Assets.at("bootstrap-3.3.6-dist/js/bootstrap.js")"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/2.0.0/toaster.js"></script>
+
+        @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.1.0/toaster.js"></script>*@
+        <script src="https://code.angularjs.org/1.2.0/angular-animate.min.js" ></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.1.0/toaster.min.js"></script>
+
         <script type="text/javascript" src="@routes.Assets.at("gg.js")"></script>
 
     </body>
 </html>
+

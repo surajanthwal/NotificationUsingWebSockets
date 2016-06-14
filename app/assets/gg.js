@@ -79,6 +79,11 @@ LoginModule.controller('HomeController', ['$scope', 'toaster', '$window', '$http
             });
         };
 
+        var toasterInfo = function (message) {
+            toaster.info(message);
+            $scope.$apply();
+
+        };
 
         if ('WebSocket' in window) {
             console.log("WEB SOCKETS will work");
@@ -87,7 +92,7 @@ LoginModule.controller('HomeController', ['$scope', 'toaster', '$window', '$http
             connection.onopen = function () {
                 console.log('Connection open!');
                 connection.send($scope.credentials.emailId);
-                toaster.success('Conection open');
+                toaster.info('Conection open');
 
             };
 
@@ -100,7 +105,8 @@ LoginModule.controller('HomeController', ['$scope', 'toaster', '$window', '$http
             connection.onmessage = function (e) {
                 var server_message = e.data;
                 console.log(server_message);
-                toaster.success(server_message);
+                //$scope.toasterMethod(server_message);
+                toasterInfo(server_message);
             };
 
 
@@ -108,8 +114,24 @@ LoginModule.controller('HomeController', ['$scope', 'toaster', '$window', '$http
             console.log("WEB SOCKETS will not  work");
             /*WebSockets are not supported. Try a fallback method like long-polling etc*/
         }
+
+        $scope.toasterMethod = function (message) {
+            toaster.success(message);
+        };
+
+
+        function logOut() {
+            $http({
+                url: '/logout',
+                method: 'GET'
+            }).success(function (response) {
+                toaster.success(response.successMessage);
+            }).error(function (response) {
+                toaster.error(response.errorMessage);
+            });
+        }
     }]);
-LoginModule.controller('SubscribeController', ['$rootScope','$scope', 'toaster', '$window', '$http', '$state', '$stateParams', 'subscribedPersons',
+LoginModule.controller('SubscribeController', ['$rootScope', '$scope', 'toaster', '$window', '$http', '$state', '$stateParams', 'subscribedPersons',
     function ($rootScope, $scope, toaster, $window, $http, $state, $stateParams, subscribedPersons) {
         console.log("inside subscribe controller");
         $scope.values = subscribedPersons.data;
@@ -259,11 +281,11 @@ LoginModule.controller('GGController', ['$scope', 'toaster', '$window', '$http',
         //        $scope.mailSentMessage = true;
         //        $scope.mailMessage = response.successMessage;
         //        console.log($scope.mailMessage);
-        //        //toastr.success(response.successMessage);
+        //        //toaster.success(response.successMessage);
         //        //$state.go('resetPassword');
         //        //alert('Success');
         //    }).error(function (response) {
-        //        toastr.error('Invalid EmailId', response.errorMessage);
+        //        toaster.error('Invalid EmailId', response.errorMessage);
         //    });
         //};
         //$scope.setNewPassword = function () {
@@ -276,11 +298,11 @@ LoginModule.controller('GGController', ['$scope', 'toaster', '$window', '$http',
         //        data: $scope.forgot
         //    }).success(function (response) {
         //        var obj = angular.fromJson(response);
-        //        toastr.success(response.successMessage);
+        //        toaster.success(response.successMessage);
         //        $state.go('loginPage');
         //        //alert('Success');
         //    }).error(function (response) {
-        //        toastr.error('Error', response.errorMessage);
+        //        toaster.error('Error', response.errorMessage);
         //    });
         //};
         ////$scope.forgotPassword = function () {
