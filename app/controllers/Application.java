@@ -283,7 +283,9 @@ public class Application extends Controller {
 
     public static Result logout() {
         session().clear();
-        return redirect(controllers.routes.Application.index());
+        ObjectNode result = Json.newObject();
+        result.put("successMessage", "Successfully logged out");
+        return ok(result);
     }
 
 

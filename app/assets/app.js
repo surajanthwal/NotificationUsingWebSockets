@@ -1,4 +1,4 @@
-var LoginModule = angular.module('GossipGirl', ['ui.router', 'toaster', 'ng']);
+var LoginModule = angular.module('UserNotification', ['ui.router', 'toaster', 'ng']);
 
 LoginModule.config(['$urlRouterProvider', '$stateProvider', '$locationProvider'
     , function ($urlRouterProvider, $stateProvider, $locationProvider) {
@@ -120,16 +120,17 @@ LoginModule.controller('HomeController', ['$scope', 'toaster', '$window', '$http
         };
 
 
-        function logOut() {
+        $scope.logOut = function () {
             $http({
                 url: '/logout',
                 method: 'GET'
             }).success(function (response) {
+                $window.location.href = "/";
                 toaster.success(response.successMessage);
             }).error(function (response) {
                 toaster.error(response.errorMessage);
             });
-        }
+        };
     }]);
 LoginModule.controller('SubscribeController', ['$rootScope', '$scope', 'toaster', '$window', '$http', '$state', '$stateParams', 'subscribedPersons',
     function ($rootScope, $scope, toaster, $window, $http, $state, $stateParams, subscribedPersons) {
